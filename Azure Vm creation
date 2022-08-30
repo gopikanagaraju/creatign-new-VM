@@ -1,11 +1,18 @@
 - name: Create Azure VM
-   - name: Create VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create VM
     azure_rm_virtualmachine:
-      resource_group: myResourceGroup
-      name: myVM
+      resource_group: TestVM_group
+      name: issuevm1
       vm_size: Standard_DS1_v2
       admin_username: azureuser
-      network_interfaces: myNIC
+      admin_password: Azureuser12345
+      #ssh_public_keys:
+      # - path: /home/azureuser/.ssh/authorized_keys
+      #   key_data: "<key_data>"
+          # network_interfaces: myNIC
       image:
         offer: CentOS
         publisher: OpenLogic
